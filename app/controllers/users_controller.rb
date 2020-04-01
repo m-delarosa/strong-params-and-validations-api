@@ -22,9 +22,17 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user = User.new(params[:id])
+    @user.update(user_params)
+
+    render json: user
   end
   
   def destroy
+    user = User.find(params[:id])
+    user.destroy
+
+    render json: {message: "Author deleted sucessfully"}
   end
 
   private
