@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  # validates :name, :username, :email, presence: true
-  # validates :username, length: { minimum: 6, maximum: 12 }
-  # validates :username, uniqueness: true
-
   has_secure_password
+
+  validates :name, :username, :email, presence: {message: "%{attribute} cannont be blank."}
+  validates :username, length: { minimum: 6, maximum: 12, message: "%{attribute} must be between 6 and 12 charaters long." }
+  validates :username, uniqueness: {message: "%{attribute}s must be unique, and %{value} has already been taken."}
 end
